@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:41:49 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/11 09:13:34 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/11 10:03:13 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		write (2, "There should be only one argument\n", 34);
+		if (argc < 2)
+			write (2, "There should be one argument\n", 34);
+		else 
+			write (2, "There should be only one argument\n", 34);
 		exit(1);
 	}
 	find_x_and_y(argv, &data);
