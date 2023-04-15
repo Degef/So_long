@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:03:51 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/11 10:06:25 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/15 16:25:46 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	exit_window(t_data *data)
 {
 	mlx_clear_window(data->mlx, data->win);
 	mlx_destroy_window(data->mlx, data->win);
+	if (data->collectables != data->collected)
+		ft_putstr_fd("\nYOU GAVE UP BEFORE TAKING ALL THE TREASURES", 1);
 	ft_putstr_fd("\n\nTotal number of collectables: ", 1);
 	ft_putnbr_fd(data->collected, 1);
 	ft_putstr_fd("\nnumber of moves: ", 1);
@@ -54,8 +56,5 @@ int	key_hook(int keycode, t_data *data)
 		check_block(data, RIGHT);
 	else if (keycode == 0 || keycode == 123)
 		check_block(data, LEFT);
-	data->counter += 1;
-	put_mssg(data);
-	display_count_to_window(data);
 	return (0);
 }

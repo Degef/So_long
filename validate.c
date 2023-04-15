@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:17:35 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/11 09:12:13 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/15 13:43:52 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	check_collectable(t_data *data)
 	}
 	if (c < 1)
 		handle_error(data, "Error! You don't have any collectable\n", 1);
+	data->collectables = c;
 }
 
 void	validate_map(t_data *data)

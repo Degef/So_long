@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:32:10 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/11 09:44:20 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/15 16:20:40 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,18 @@
 typedef struct s_map
 {
 	char	**map;
-	void	*object;
 	int		x;
 	int		y;
 }				t_map;
+
+typedef struct s_img
+{
+	void	*w;
+	void	*bg;
+	void	*p;
+	void	*c;
+	void	*e;
+}				t_img;
 
 typedef struct s_data
 {
@@ -44,17 +52,15 @@ typedef struct s_data
 	int		p_y;
 	int		counter;
 	int		collected;
+	int		collectables;
 	t_map	*map;
-	void	*img;
+	t_img	*img;
 }				t_data;
 
-void	put_wall(int *x, int *y, t_data *data);
-void	put_collectible(int *x, int *y, t_data *data);
-void	put_exit(int *x, int *y, t_data *data);
-void	put_player(int *x, int *y, t_data *data);
-void	put_background(int *x, int *y, t_data *data);
+
 void	read_map(char **argv, t_data *data);
 void	find_x_and_y(char **argv, t_data *data);
+void	find_px_py(t_data *data);
 
 //render map
 void	render_map(t_data *data);
@@ -78,6 +84,7 @@ void	ft_move(t_data *data, int x, int y);
 void	free_double_pointer(t_data *data);
 void	handle_error(t_data *data, char *str, int num);
 int		exit_game(t_data *data);
+void	check_exit(t_data *data);
 
 //validate
 void	check_map_border(t_data *data);
@@ -87,8 +94,12 @@ void	validate_map(t_data *data);
 
 //path checker
 void	check_path(t_data *data);
+void	check_path_of_collectables(t_data *data, int x, int y);
 
 // display mssg
 void	put_mssg(t_data *data);
 void	display_count_to_window(t_data *data);
+
+//more utils
+void	import_images(t_data *data);
 #endif

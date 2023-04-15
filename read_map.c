@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:39:29 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/05 20:28:47 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/15 16:34:41 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	read_map(char **argv, t_data *data)
 
 	i = 1;
 	fd = open(argv[1], O_RDONLY);
-	if (!((data)->map->map))
+	if (!(data->map->map))
 		return ;
 	while (i <= (data)->size_y)
 	{
@@ -39,8 +39,8 @@ static void	check_error(int x, int y, int sum, t_data *data)
 {
 	if ((x * (y - 1)) != sum)
 		handle_error(data, "Map is not rectangle\n", 0);
-	(data)->size_x = x;
-	(data)->size_y = y;
+	data->size_x = x;
+	data->size_y = y;
 }
 
 static void	read_wid(int rd_byt, char **buff, int fd, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:34:12 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/11 09:36:08 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/15 16:17:02 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 static void	render_map2(t_data *data, int x, int y)
 {
 	if (data->map->map[y / 32][x / 32] == '1')
-		put_wall(&x, &y, data);
+		mlx_put_image_to_window(data->mlx, data->win, data->img->w, x, y);
 	else if (data->map->map[y / 32][x / 32] == 'C')
-		put_collectible(&x, &y, data);
+		mlx_put_image_to_window(data->mlx, data->win, data->img->c, x, y);
 	else if (data->map->map[y / 32][x / 32] == 'E')
-		put_exit(&x, &y, data);
+		mlx_put_image_to_window(data->mlx, data->win, data->img->e, x, y);
 	else if (data->map->map[y / 32][x / 32] == 'P')
-		put_player(&x, &y, data);
+		mlx_put_image_to_window(data->mlx, data->win, data->img->p, x, y);
 	else if (data->map->map[y / 32][x / 32] == '0')
-		put_background(&x, &y, data);
+		mlx_put_image_to_window(data->mlx, data->win, data->img->bg, x, y);
 	else
 		handle_error(data, "Error! Wrong map entry detected\n", 1);
 }

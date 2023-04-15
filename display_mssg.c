@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 09:32:53 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/11 09:44:53 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/15 16:32:42 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,11 @@ void	put_mssg(t_data *data)
 	}
 }
 
-void	display_count_to_window(t_data *data)
+static int	clean_before_new_text(t_data *data)
 {
-	char	*str1;
-	int		i;
 	int		x;
 	int		y;
-	char	*str2;
+	int		i;
 
 	i = 0;
 	x = 0;
@@ -37,9 +35,22 @@ void	display_count_to_window(t_data *data)
 	while (data->map->map[0][i])
 	{
 		x = i * IMG_W;
-		put_background(&x, &y, data);
+		mlx_put_image_to_window(data->mlx, data->win,
+			data->img->bg, x, y);
 		i++;
 	}
+	return (y);
+}
+
+void	display_count_to_window(t_data *data)
+{
+	char	*str1;
+	char	*str2;
+	int		y;
+
+	if (data->counter <= 0)
+		return ;
+	y = clean_before_new_text(data);
 	str1 = ft_itoa(data->counter);
 	str2 = ft_itoa(data->collected);
 	str1 = ft_strjoin(str1, " : Moves  ");

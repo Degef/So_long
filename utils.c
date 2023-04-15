@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:01:07 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/11 09:18:59 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/15 16:19:45 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,19 @@ void	ft_move(t_data *data, int x, int y)
 	}
 	render_map(data);
 	if (y < 0)
-		exit_window(data);
+	{
+		if (data->collectables == data->collected)
+			exit_window(data);
+	}
+	data->counter += 1;
+	put_mssg(data);
+	display_count_to_window(data);
+}
+
+void	check_exit(t_data *data)
+{
+	if (data->collectables == data->collected)
+		ft_move(data, -1, -1);
 }
 
 void	free_double_pointer(t_data *data)

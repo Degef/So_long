@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 22:50:48 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/11 10:05:50 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/15 15:37:58 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,41 @@ static void	free_double_p(char ***str)
 	free((*str));
 }
 
+void	check_path_of_collectables(t_data *data, int x, int y)
+{
+	char	**visited;
+
+	while (data->map->map[y])
+	{
+		x = 0;
+		while (data->map->map[y][x])
+		{
+			if (data->map->map[y][x] == 'C')
+			{
+				visited = malloc(sizeof(char *) * (data->size_y + 1));
+				if (!visited)
+					handle_error(data, "Error! allocation failure.\n", 1);
+				visited[data->size_y] = 0;
+				fill_visited(&visited, data);
+				if (!is_valid_path(data, x, y, visited))
+					handle_error(data, "Error! No path for collectable.\n", 1);
+				free_double_p(&visited);
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
 void	check_path(t_data *data)
 {
 	char	**visited;
-	int		p_x;
-	int		p_y;
+	int		x;
+	int		y;
 
-	p_x = data->p_x;
-	p_y = data->p_y;
+	x = 0;
+	y = 0;
+	find_px_py(data);
 	visited = malloc(sizeof(char *) * (data->size_y + 1));
 	if (!visited)
 		handle_error(data, "Error! allocation failure.\n", 1);
@@ -87,4 +114,5 @@ void	check_path(t_data *data)
 		handle_error(data, "Error! No valid path exists.\n", 1);
 	}
 	free_double_p(&visited);
+	check_path_of_collectables(data, x, y);
 }
