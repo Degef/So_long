@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:39:29 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/15 16:34:41 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/17 12:13:10 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ void	find_x_and_y(char **argv, t_data *data)
 			"Error! File doesn't exist in the provided path\n", 0);
 	rd_bytes = 1;
 	buff = (char *)malloc (sizeof(char) * 2);
+	if (!buff)
+		exit(1);
 	read_wid(rd_bytes, &buff, fd, data);
 }

@@ -1,10 +1,9 @@
 NAME = so_long
 SRC = so_long.c render_map.c read_map.c move.c utils.c key_hook.c validate.c path_checker.c display_mssg.c more_utils.c 
-# main.c 
 OBJ = $(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-FSANITIZER = -fsanitize=address -fno-omit-frame-pointer
+# FSANITIZER = -fsanitize=address -fno-omit-frame-pointer
 MLX = ./mlx/
 LIBFT = libft.a
 
@@ -17,7 +16,7 @@ $(NAME): $(OBJ)
 	$(MAKE) all -C ./libft
 	cp ./libft/$(LIBFT) ./
 	$(MAKE) -C $(MLX)
-	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit $(FSANITIZER) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
 	$(MAKE) clean -C ./libft

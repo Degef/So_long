@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:32:10 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/15 16:20:40 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/17 14:00:34 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct s_data
 
 void	read_map(char **argv, t_data *data);
 void	find_x_and_y(char **argv, t_data *data);
-void	find_px_py(t_data *data);
 
 //render map
 void	render_map(t_data *data);
@@ -95,6 +94,8 @@ void	validate_map(t_data *data);
 //path checker
 void	check_path(t_data *data);
 void	check_path_of_collectables(t_data *data, int x, int y);
+int		is_valid_path_e(t_data *data, int x, int y, char **visited);
+int		is_valid_path_c(t_data *data, int x, int y, char **visited);
 
 // display mssg
 void	put_mssg(t_data *data);
@@ -102,4 +103,7 @@ void	display_count_to_window(t_data *data);
 
 //more utils
 void	import_images(t_data *data);
+void	find_px_py(t_data *data);
+void	free_double_p(char ***str);
+
 #endif

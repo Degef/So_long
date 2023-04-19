@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:41:49 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/15 16:05:35 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/17 12:10:14 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,6 @@ void	check_filename(char *file_name)
 	{
 		write(2, "Error!, Wrong file extension", 28);
 		exit(1);
-	}
-}
-
-void	find_px_py(t_data *data)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (data->map->map[y])
-	{
-		x = 0;
-		while (data->map->map[y][x])
-		{
-			if (data->map->map[y][x] == 'P')
-			{
-				data->p_x = x;
-				data->p_y = y;
-			}
-			x++;
-		}
-	y++;
 	}
 }
 

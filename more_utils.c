@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 15:46:59 by Degef             #+#    #+#             */
-/*   Updated: 2023/04/15 16:17:48 by Degef            ###   ########.fr       */
+/*   Updated: 2023/04/17 12:31:32 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,39 @@ void	import_images(t_data *data)
 			"./images/pac_full.xpm", &data->map->x, &data->map->y);
 	if (!data->img->p)
 		handle_error(data, "Error! Image couldn't be found\n", 1);
+}
+
+void	find_px_py(t_data *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (data->map->map[y])
+	{
+		x = 0;
+		while (data->map->map[y][x])
+		{
+			if (data->map->map[y][x] == 'P')
+			{
+				data->p_x = x;
+				data->p_y = y;
+			}
+			x++;
+		}
+	y++;
+	}
+}
+
+void	free_double_p(char ***str)
+{
+	int	i;
+
+	i = 0;
+	while ((*str)[i])
+		i++;
+	i--;
+	while (i >= 0)
+		free((*str)[i--]);
+	free((*str));
 }
