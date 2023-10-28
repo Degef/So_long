@@ -28,7 +28,7 @@ void	init_map(t_data *data)
 			(data->size_y * IMG_W + IMG_W), "So Long");
 	import_images(data);
 	render_map(data);
-	mlx_key_hook(data->win, key_hook, data);
+	mlx_hook(data->win, 2, 1L << 0, key_hook, data);
 	mlx_hook(data->win, 17, 0, exit_game, data);
 }
 
