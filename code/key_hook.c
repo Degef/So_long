@@ -55,12 +55,10 @@ int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == 53)
 		exit_window(data);
-	else if (keycode == 13 || keycode == 126) {
+	else if (keycode == 13 || keycode == 126)
 		check_block(data, UP);
-	}
-	else if (keycode == 1 || keycode == 125) {
+	else if (keycode == 1 || keycode == 125)
 		check_block(data, DOWN);
-	}
 	else if (keycode == 2 || keycode == 124) {
 		data->player_direction = RIGHT;
 		check_block(data, RIGHT);

@@ -21,9 +21,18 @@ static void	render_map2(t_data *data, int x, int y)
 	else if (data->map->map[y / 32][x / 32] == 'E')
 		mlx_put_image_to_window(data->mlx, data->win, data->img->e, x, y);
 	else if (data->map->map[y / 32][x / 32] == 'P' && data->player_direction == RIGHT)
+	{
+		
+		mlx_put_image_to_window(data->mlx, data->win, data->img->bg, x, y);
 		mlx_put_image_to_window(data->mlx, data->win, data->img->p_right, x, y);
+	}
 	else if (data->map->map[y / 32][x / 32] == 'P' && data->player_direction == LEFT)
+	{
+		
+		mlx_put_image_to_window(data->mlx, data->win, data->img->bg, x, y);
 		mlx_put_image_to_window(data->mlx, data->win, data->img->p_left, x, y);
+	}
+		// mlx_put_image_to_window(data->mlx, data->win, data->img->p_left, x, y);
 	else if (data->map->map[y / 32][x / 32] == '0')
 		mlx_put_image_to_window(data->mlx, data->win, data->img->bg, x, y);
 	else if (data->map->map[y / 32][x / 32] == '2' && data->enemy->dir)
