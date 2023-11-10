@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/so_long.h"
 
 void	import_images(t_data *data)
 {
-	data->img->w = mlx_xpm_file_to_image(data->mlx, "./images/wall.xpm",
+	data->img->w = mlx_xpm_file_to_image(data->mlx, "./images/walls.xpm",
 			&data->map->x, &data->map->y);
 	if (!data->img->w)
 		handle_error(data, "Error! Image couldn't be found\n", 1);
 	data->img->c = mlx_xpm_file_to_image(data->mlx,
-			"./images/collectable.xpm", &data->map->x, &data->map->y);
+			"./images/heart_small.xpm", &data->map->x, &data->map->y);
 	if (!data->img->c)
 		handle_error(data, "Error! Image couldn't be found\n", 1);
-	data->img->e = mlx_xpm_file_to_image(data->mlx, "./images/exit.xpm",
+	data->img->e = mlx_xpm_file_to_image(data->mlx, "./images/exit2.xpm",
 			&data->map->x, &data->map->y);
 	if (!data->img->e)
 		handle_error(data, "Error! Image couldn't be found\n", 1);
@@ -30,10 +30,41 @@ void	import_images(t_data *data)
 			"./images/background.xpm", &data->map->x, &data->map->y);
 	if (!data->img->bg)
 		handle_error(data, "Error! Image couldn't be found\n", 1);
-	data->img->p = mlx_xpm_file_to_image(data->mlx,
-			"./images/pac_full.xpm", &data->map->x, &data->map->y);
-	if (!data->img->p)
+	data->img->p_left = mlx_xpm_file_to_image(data->mlx,
+			"./images/Moana_left.xpm", &data->map->x, &data->map->y);
+	if (!data->img->p_left)
 		handle_error(data, "Error! Image couldn't be found\n", 1);
+	data->img->p_right = mlx_xpm_file_to_image(data->mlx,
+			"./images/Moana_right.xpm", &data->map->x, &data->map->y);
+	if (!data->img->p_right)
+		handle_error(data, "Error! Image couldn't be found\n", 1);
+	data->img->bullet_right = mlx_xpm_file_to_image(data->mlx,
+			"./images/fire_right.xpm", &data->map->x, &data->map->y);
+	if (!data->img->bullet_right)
+		handle_error(data, "Error! Image couldn't be found\n", 1);
+	data->img->bullet_left = mlx_xpm_file_to_image(data->mlx,
+			"./images/fire_left.xpm", &data->map->x, &data->map->y);
+	if (!data->img->bullet_left)
+		handle_error(data, "Error! Image couldn't be found\n", 1);
+}
+
+t_enemy	*lstlast(t_enemy *lst)
+{
+	
+	// t_enemy *temp;
+	if (!lst)
+		return (0);
+	// temp = lst;
+	// while (temp->next)
+	// {
+	// 	temp = temp->next;
+	// }
+	// return (temp);
+	while (lst->next)
+	{
+		lst = lst->next;
+	}
+	return (lst);
 }
 
 void	find_px_py(t_data *data)
@@ -51,6 +82,21 @@ void	find_px_py(t_data *data)
 			{
 				data->p_x = x;
 				data->p_y = y;
+			}
+			if (data->map->map[y][x] == '2')
+			{
+				t_enemy	*enemy;
+				enemy = malloc(sizeof(t_enemy));
+				enemy->x = x;
+				enemy->y = y;
+				enemy->dir = 1;
+				enemy->moves = 0;
+				enemy->next = NULL;
+				if (!data->enemy)
+					data->enemy = enemy;
+				else 
+					lstlast(data->enemy)->next = enemy;
+				data->enemy_counter++;
 			}
 			x++;
 		}

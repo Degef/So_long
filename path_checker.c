@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/so_long.h"
 
 int	is_valid_path_e(t_data *data, int x, int y, char **visited)
 {
@@ -68,7 +68,7 @@ static void	fill_visited(char ***visited, t_data *data)
 	while (data->map->map[i])
 	{
 		j = 0;
-		(*visited)[i] = malloc (sizeof(char) * (data->size_x + 1));
+		(*visited)[i] = ft_calloc (sizeof(char), (data->size_x + 1));
 		while (data->map->map[i][j])
 		{
 			(*visited)[i][j] = data->map->map[i][j];

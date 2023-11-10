@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/so_long.h"
 
 void	ft_move(t_data *data, int x, int y)
 {
@@ -21,15 +21,16 @@ void	ft_move(t_data *data, int x, int y)
 		data->p_y = y;
 		data->map->map[data->p_y][data->p_x] = 'P';
 	}
-	render_map(data);
+	data->counter += 1;
+	// render_map(data);
 	if (y < 0)
 	{
 		if (data->collectables == data->collected)
 			exit_window(data);
 	}
-	data->counter += 1;
-	put_mssg(data);
-	display_count_to_window(data);
+	// data->counter += 1;
+	// put_mssg(data);
+	// display_count_to_window(data);
 }
 
 void	check_exit(t_data *data)

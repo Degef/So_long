@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "mlx.h"
-# include "./libft/libft.h"
+# include "../libft/libft.h"
 
 # define IMG_W 32
 # define UP 13
@@ -37,10 +37,25 @@ typedef struct s_img
 {
 	void	*w;
 	void	*bg;
-	void	*p;
+	void	*p_right;
+	void	*p_left;
 	void	*c;
 	void	*e;
+	void	*bullet_right;
+	void	*bullet_left;
 }				t_img;
+
+
+typedef struct s_enemy 
+{
+	int		x;
+	int		y;
+	int		dir;
+	int		counter;
+	int		moves;
+	struct s_enemy	*next;
+}				t_enemy;
+
 
 typedef struct s_data
 {
@@ -50,13 +65,15 @@ typedef struct s_data
 	int		size_y;
 	int		p_x;
 	int		p_y;
+	int		enemy_counter;
 	int		counter;
 	int		collected;
 	int		collectables;
+	int		player_direction;
+	t_enemy	*enemy;
 	t_map	*map;
 	t_img	*img;
 }				t_data;
-
 
 void	read_map(char **argv, t_data *data);
 void	find_x_and_y(char **argv, t_data *data);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/so_long.h"
 
 static int	check_block(t_data *data, int num)
 {
@@ -40,6 +40,13 @@ void	exit_window(t_data *data)
 	ft_putstr_fd("\nnumber of moves: ", 1);
 	ft_putnbr_fd(data->counter, 1);
 	ft_putstr_fd("\n\n", 1);
+	t_enemy *temp;
+	while (data->enemy)
+	{
+		temp = data->enemy;
+		data->enemy = data->enemy->next;
+		free(temp);
+	}
 	free_double_pointer(data);
 	exit(1);
 }
@@ -48,13 +55,19 @@ int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == 53)
 		exit_window(data);
-	else if (keycode == 13 || keycode == 126)
+	else if (keycode == 13 || keycode == 126) {
 		check_block(data, UP);
-	else if (keycode == 1 || keycode == 125)
+	}
+	else if (keycode == 1 || keycode == 125) {
 		check_block(data, DOWN);
-	else if (keycode == 2 || keycode == 124)
+	}
+	else if (keycode == 2 || keycode == 124) {
+		data->player_direction = RIGHT;
 		check_block(data, RIGHT);
-	else if (keycode == 0 || keycode == 123)
+	}
+	else if (keycode == 0 || keycode == 123) {
+		data->player_direction = LEFT;
 		check_block(data, LEFT);
+	}
 	return (0);
 }

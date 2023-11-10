@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/so_long.h"
 
 void	read_map(char **argv, t_data *data)
 {
@@ -20,7 +20,7 @@ void	read_map(char **argv, t_data *data)
 
 	i = 1;
 	fd = open(argv[1], O_RDONLY);
-	if (!(data->map->map))
+	if (!data->map->map)
 		return ;
 	while (i <= (data)->size_y)
 	{
