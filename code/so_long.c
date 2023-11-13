@@ -14,8 +14,8 @@
 
 void	init_map(t_data *data)
 {
-	data->mlx = mlx_init();
 	import_images(data);
+	data->mlx = mlx_init();
 	if (!data->mlx)
 	{
 		perror("Error\nprogramm init failed\n");

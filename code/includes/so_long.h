@@ -51,11 +51,9 @@ typedef struct s_enemy
 	int		x;
 	int		y;
 	int		dir;
-	int		counter;
 	int		moves;
 	struct s_enemy	*next;
 }				t_enemy;
-
 
 typedef struct s_data
 {

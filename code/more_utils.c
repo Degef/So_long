@@ -14,56 +14,25 @@
 
 void	import_images(t_data *data)
 {
-	data->img->w = mlx_xpm_file_to_image(data->mlx, "./images/walls.xpm",
-			&data->map->x, &data->map->y);
-	if (!data->img->w)
-		handle_error(data, "Error! Image couldn't be found\n", 1);
-	data->img->c = mlx_xpm_file_to_image(data->mlx,
-			"./images/heart_small.xpm", &data->map->x, &data->map->y);
-	if (!data->img->c)
-		handle_error(data, "Error! Image couldn't be found\n", 1);
-	data->img->e = mlx_xpm_file_to_image(data->mlx, "./images/exit2.xpm",
-			&data->map->x, &data->map->y);
-	if (!data->img->e)
-		handle_error(data, "Error! Image couldn't be found\n", 1);
-	data->img->bg = mlx_xpm_file_to_image(data->mlx,
-			"./images/background.xpm", &data->map->x, &data->map->y);
-	if (!data->img->bg)
-		handle_error(data, "Error! Image couldn't be found\n", 1);
-	data->img->p_left = mlx_xpm_file_to_image(data->mlx,
-			"./images/Moana_left.xpm", &data->map->x, &data->map->y);
-	if (!data->img->p_left)
-		handle_error(data, "Error! Image couldn't be found\n", 1);
-	data->img->p_right = mlx_xpm_file_to_image(data->mlx,
-			"./images/Moana_right.xpm", &data->map->x, &data->map->y);
-	if (!data->img->p_right)
-		handle_error(data, "Error! Image couldn't be found\n", 1);
-	data->img->bullet_right = mlx_xpm_file_to_image(data->mlx,
-			"./images/fire_right.xpm", &data->map->x, &data->map->y);
-	if (!data->img->bullet_right)
-		handle_error(data, "Error! Image couldn't be found\n", 1);
-	data->img->bullet_left = mlx_xpm_file_to_image(data->mlx,
-			"./images/fire_left.xpm", &data->map->x, &data->map->y);
-	if (!data->img->bullet_left)
+	data->img->w = mlx_xpm_file_to_image(data->mlx, "./images/walls.xpm", &data->map->x, &data->map->y);
+	data->img->c = mlx_xpm_file_to_image(data->mlx,	"./images/heart_small.xpm", &data->map->x, &data->map->y);
+	data->img->e = mlx_xpm_file_to_image(data->mlx, "./images/exit2.xpm", &data->map->x, &data->map->y);
+	data->img->bg = mlx_xpm_file_to_image(data->mlx, "./images/background.xpm", &data->map->x, &data->map->y);
+	data->img->p_left = mlx_xpm_file_to_image(data->mlx, "./images/Moana_left.xpm", &data->map->x, &data->map->y);
+	data->img->p_right = mlx_xpm_file_to_image(data->mlx, "./images/Moana_right.xpm", &data->map->x, &data->map->y);
+	data->img->bullet_right = mlx_xpm_file_to_image(data->mlx,	"./images/fire_right.xpm", &data->map->x, &data->map->y);
+	data->img->bullet_left = mlx_xpm_file_to_image(data->mlx, "./images/fire_left.xpm", &data->map->x, &data->map->y);
+	if (!data->img->w || !data->img->c || !data->img->e || !data->img->bg || \
+		!data->img->p_left || !data->img->p_right || !data->img->bullet_right || !data->img->bullet_left)
 		handle_error(data, "Error! Image couldn't be found\n", 1);
 }
 
 t_enemy	*lstlast(t_enemy *lst)
 {
-	
-	// t_enemy *temp;
 	if (!lst)
 		return (0);
-	// temp = lst;
-	// while (temp->next)
-	// {
-	// 	temp = temp->next;
-	// }
-	// return (temp);
 	while (lst->next)
-	{
 		lst = lst->next;
-	}
 	return (lst);
 }
 
